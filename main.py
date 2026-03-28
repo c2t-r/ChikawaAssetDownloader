@@ -15,7 +15,7 @@ def main() -> None:
 
     resp = requests.get(RELEASE_ID_API)
     resp.raise_for_status()
-    release_id = resp.text
+    release_id = resp.text  # 97fab255-29be-11f1-9800-0a58a9feac03
 
     for bundle in catalog["asset_bundle"]:
         if "http" not in bundle["load_path"]:
