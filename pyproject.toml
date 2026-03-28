@@ -1,0 +1,30 @@
+[project]
+name = "asset-download"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "requests>=2.33.0",
+]
+
+[dependency-groups]
+dev = ["ruff>=0.14.10", "taskipy>=1.14.1", "ty>=0.0.10"]
+
+[tool.taskipy.tasks]
+lint = "uv run ruff check . && uv run ty check"
+fmt = "uv run ruff format ."
+fix = "uv run ruff check --fix . && uv run ruff format ."
+run = "uv run main.py"
+
+[tool.ruff]
+exclude = [".venv", ".ruff_chache", "*/**/__init__.py"]
+lint.select = ["F", "UP", "I", "E", "ANN"]
+lint.ignore = ["ANN401"]
+line-length = 120
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "lf"
