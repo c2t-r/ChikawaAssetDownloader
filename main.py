@@ -1,16 +1,22 @@
+import argparse
 from pathlib import Path
 
 import requests
 from catalog import load_catalog_bytes
 
-VERSION = "Prd_2.0.1"
 OCTO_SERVER_DOMAIN = "resources-data.jp.chiikawa-pocket.com"
-RELEASE_ID_API = f"https://resources-data.jp.chiikawa-pocket.com/tag/{VERSION}"
 OUT_PATH = Path("out")
 
 
 def main() -> None:
-    resp = requests.get(RELEASE_ID_API)
+    parser = argparse.ArgumentParser(description="Chikawa Asset Downloader")
+    parser.add_argument("-v", "--v", type=str, required=True, help="Target version (e.g., Prd_2.0.1)")
+    args = parser.parse_args()
+
+    version = args.v
+    release_id_api = f"https://{OCTO_SERVER_DOMAIN}/tag/{version}"
+
+    resp = requests.get(release_id_api)
     resp.raise_for_status()
     release_id = resp.text
 
