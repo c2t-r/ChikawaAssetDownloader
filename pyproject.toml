@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "chikawacatalogreader",
     "requests>=2.33.0",
 ]
 
@@ -28,3 +29,6 @@ quote-style = "double"
 indent-style = "space"
 skip-magic-trailing-comma = false
 line-ending = "lf"
+
+[tool.uv.sources]
+chikawacatalogreader = { git = "https://github.com/c2t-r/ChikawaCatalogReader.git" }
